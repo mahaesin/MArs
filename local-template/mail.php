@@ -51,9 +51,8 @@ function send_staff_mail() {
         ->setBody($text)
     ;
 
-    foreach (TEXTS as $location => $longname) {
-        if ($location == "no") continue;
-
+    foreach (AREAS as $location => $values) {
+        $longname = $values['name'];
         $result = $db->query("SELECT name FROM $table WHERE date = '$today' AND text = '$location'");
         $reservations = $result->fetch_all();
         $result->free();
